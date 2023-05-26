@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>{{ msg }}</h1>
+    <!-- <h1>{{ msg }}</h1>
     <p>
       For a guide and recipes on how to configure / customize this project,<br>
       check out the
@@ -19,24 +19,72 @@
       <li><a href="https://twitter.com/vuejs" target="_blank" rel="noopener">Twitter</a></li>
       <li><a href="https://news.vuejs.org" target="_blank" rel="noopener">News</a></li>
     </ul>
-    <h3>Ecosystem</h3>
+    <h3>Ecosystem</h3> -->
     <ul>
-      <li><a href="https://router.vuejs.org" target="_blank" rel="noopener">vue-router</a></li>
-      <li><a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a></li>
-      <li><a href="https://github.com/vuejs/vue-devtools#vue-devtools" target="_blank" rel="noopener">vue-devtools</a></li>
-      <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
-      <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
+      <li>
+        <a href="https://router.vuejs.org" target="_blank" rel="noopener"
+          >vue-router</a
+        >
+      </li>
+      <li>
+        <a href="https://vuex.vuejs.org" target="_blank" rel="noopener">vuex</a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/vuejs/vue-devtools#vue-devtools"
+          target="_blank"
+          rel="noopener"
+          >vue-devtools</a
+        >
+      </li>
+      <li>
+        <a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener"
+          >vue-loader</a
+        >
+      </li>
+      <li>
+        <a
+          href="https://github.com/vuejs/awesome-vue"
+          target="_blank"
+          rel="noopener"
+          >awesome-vue</a
+        >
+      </li>
     </ul>
+    {{ counte }}
+    <div>
+      <button @click="computed('+')"> + </button>
+      <button @click="computed('-')"> - </button>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   props: {
-    msg: String
-  }
-}
+    msg: String,
+  },
+  data() {
+    return {
+      counte: 0,
+    };
+  },
+  methods: {
+    computed(type) {
+      if (type == '-') {
+        this.counte--;
+        this.$router.push('/')
+      } else {
+        this.counte++;
+        this.$router.push('/about')
+      }
+    },
+  },
+  mounted() {
+    // this.computed();
+  },
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
