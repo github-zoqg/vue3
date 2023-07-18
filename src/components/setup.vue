@@ -270,7 +270,19 @@ export default {
     float: right;
   }
 }
-/deep/.dialogBase {
+:deep(.dialogBase) {
   text-align: initial;
+}
+// /deep/.dialogBase {
+//   text-align: initial;
+// }
+</style>
+<style lang="scss" scoped>
+$asd: aquamarine;
+.searchBase {
+  color: aquamarine;
+  .but_search {
+    color: $asd;
+  }
 }
 </style>

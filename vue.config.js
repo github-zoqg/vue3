@@ -23,14 +23,14 @@ module.exports = {
       // 给 sass-loader 传递选项
       scss: {
         // sass-loader版本V8以上
-        prependData: '@import "~@/assets/common.scss";',
+        // prependData: '@import "~@/assets/common.scss";',
         // sass-loader版本V8以下
         // additionalData: '@import "~@/assets/common.scss";'
       },
     },
   },
   devServer: {
-    host: "localhost",
+    // host: "localhost",
     port: 8080,
     proxy: {
       "/test": {
