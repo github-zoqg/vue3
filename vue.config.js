@@ -38,5 +38,8 @@ module.exports = {
         changeOrigin: true,
       },
     },
+    headers: {
+      "Access-Control-Allow-Origin": "*", // 开启应用间的跨域访问
+    },
   },
 };

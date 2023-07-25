@@ -32,6 +32,19 @@ export default {
   },
   mounted() {
     console.log(this, this.name, this.$router);
+    console.log(window.$wujie, window.$wujie?.props, "window.$wujie?.props");
+    if (window.$wujie) {
+      window.$wujie.bus.$emit("sayHello", { name: this.name });
+      this.init();
+      window.$wujie.bus.$emit("complete");
+    }
+  },
+  methods: {
+    init() {
+      window.$wujie.bus.$on("isMain", (data) => {
+        console.log(`this is ${data.name}`);
+      });
+    },
   },
 };
 </script>
