@@ -4,7 +4,7 @@ let INTERFACE = {
   test: "/test/api/reg",
 };
 
-const axiosTextPost = (params={}) => {
+const axiosTextPost = (params = {}) => {
   return axios.post(INTERFACE.test, {
     test: "test-post",
     ...params,

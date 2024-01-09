@@ -5,25 +5,26 @@
   <scriptSetup /> -->
   <!-- <router-link to="/">Go to Home</router-link> -->
   <!-- <router-link to="/about">Go to About</router-link> -->
-  <div>
-    <Header />
-    <router-view></router-view>
-  </div>
+  <!-- <Header />
+    <router-view></router-view> -->
+  <Layout />
 </template>
 
 <script>
 // import HelloWorld from "./components/HelloWorld.vue";
 // import childCounte from "./components/setup.vue";
 // import scriptSetup from "./components/scriptSetup.vue";
-import Header from "./components/header.vue";
+// import Header from "./components/header.vue";
+import Layout from "./pages/layout/index.vue";
 
 export default {
   name: "App",
   components: {
-    Header,
+    // Header,
     // HelloWorld,
     // childCounte,
     // scriptSetup,
+    Layout,
   },
   data() {
     return {
@@ -54,8 +55,10 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   /* margin-top: 60px; */
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
 }
 </style>

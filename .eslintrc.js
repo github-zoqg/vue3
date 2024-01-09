@@ -14,10 +14,13 @@ module.exports = {
     "no-debugger": "off",
     "no-unused-vars": "warn",
     "vue/no-unused-components": "warn",
-    "vue/no-multiple-template-root": "warn",
+    "vue/no-multiple-template-root": 0,
     "vue/no-unused-vars": "off",
   },
   parserOptions: {
     parser: "babel-eslint",
+  },
+  globals: {
+    particlesJS: true,
   },
 };

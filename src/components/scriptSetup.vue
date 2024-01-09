@@ -12,7 +12,6 @@
         <el-carousel
           :interval="4000"
           type="card"
-          height="400px"
           indicator-position="outside"
           class="center"
         >
@@ -44,7 +43,7 @@
         v-if="!['zero', 'six'].includes(setupData.activeName)"
         class="flexbox"
       >
-        <div v-for="(i, index) in filesLen" :key="index">
+        <div v-for="(i, index) in filesLen" :key="index" class="w100">
           <img
             :src="require(`../assets/${setupData.activeName}/${index + 1}.png`)"
             alt=""
@@ -190,6 +189,9 @@ onMounted(function () {
   text-align: center;
   margin-bottom: 80px;
 }
+:deep(.el-carousel__container) {
+  height: 300px;
+}
 .tip {
   padding-bottom: 20px;
   font-size: 20px;
@@ -215,7 +217,6 @@ onMounted(function () {
   // justify-content: space-around;
   align-items: center;
   div {
-    width: 50%;
     box-sizing: border-box;
     overflow: hidden;
     flex-shrink: 0;

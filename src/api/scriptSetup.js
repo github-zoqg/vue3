@@ -4,7 +4,7 @@ let INTERFACE = {
   test: "/scriptSetup",
 };
 
-const axiosTextPost = (params={}) => {
+const axiosTextPost = (params = {}) => {
   return axios.post(INTERFACE.test, {
     test: "test-post",
     ...params,

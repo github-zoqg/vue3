@@ -9,7 +9,7 @@ let INTERFACE = {
 
 if (process.env.NODE_ENV == "development") {
   for (let key in INTERFACE) {
-    console.log(key,'INTERFACE');
+    console.log(key, "INTERFACE");
     INTERFACE[key] = "/test" + INTERFACE[key];
   }
 }
@@ -32,9 +32,9 @@ const del = (params = {}) => {
   });
 };
 
-const getlist = (params) => {
-  return axios.post(INTERFACE.getlist, {
-    ...params,
+const getlist = (options = {}) => {
+  return axios.get(INTERFACE.getlist, {
+    params: options,
   });
 };
 

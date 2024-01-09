@@ -1,7 +1,6 @@
 <template>
   <div class="listBase">
     <div class="header">
-      <!-- {{ childData.childCounte }} -->
       <span>客户列表</span>
       <el-button link type="primary" @click="goback" class="but_goback"
         >返回</el-button
@@ -23,46 +22,37 @@
         <el-button type="primary" @click="getlist">查询</el-button>
         <el-button type="primary" @click="edit">新增</el-button>
       </div>
-      <div>
-        <el-table :data="childData.tableData" style="width: 100%" class="">
-          <el-table-column prop="name" label="姓名" width="180" />
-          <el-table-column prop="sex" label="性别" width="180">
-            <template #default="scope">
-              {{ scope.row.sex == 1 ? "男" : "女" }}
-            </template>
-          </el-table-column>
-          <el-table-column prop="date" label="日期" width="180">
-            <template #default="scope">
-              {{
-                new Date(scope.row.date)
-                  .toLocaleDateString()
-                  .replaceAll("/", "-")
-              }}
-            </template>
-          </el-table-column>
-          <el-table-column prop="phone" label="手机号" />
-          <el-table-column prop="notes" label="备注" />
-          <el-table-column prop="operate" label="操作">
-            <template #default="scope">
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click="edit(scope.row)"
-                >编辑</el-button
-              >
-              <el-button
-                link
-                type="primary"
-                size="small"
-                @click="del(scope.row)"
-                >删除</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
-      </div>
+      <el-table :data="childData.tableData" style="" class="">
+        <el-table-column prop="name" label="姓名" width="180" />
+        <el-table-column prop="sex" label="性别">
+          <template #default="scope">
+            {{ scope.row.sex == 1 ? "男" : "女" }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="date" label="日期">
+          <template #default="scope">
+            {{
+              new Date(scope.row.date).toLocaleDateString().replaceAll("/", "-")
+            }}
+          </template>
+        </el-table-column>
+        <el-table-column prop="phone" label="手机号" />
+        <el-table-column prop="notes" label="备注" />
+        <el-table-column prop="operate" label="操作" width="180">
+          <template #default="scope">
+            <el-button link type="primary" size="small" @click="edit(scope.row)"
+              >编辑</el-button
+            >
+            <el-button link type="primary" size="small" @click="del(scope.row)"
+              >删除</el-button
+            >
+          </template>
+        </el-table-column>
+      </el-table>
     </div>
+
+    <!-- <CanvasAnimation /> -->
+
     <el-dialog
       v-model="childData.dialogVisible"
       title="备注"
@@ -115,6 +105,7 @@
 import { reactive } from "vue";
 import interact from "../api/custom";
 import { ElMessage } from "element-plus";
+import CanvasAnimation from "./animatione.vue";
 
 export default {
   setup() {
@@ -156,6 +147,7 @@ export default {
       ],
     });
 
+    console.log("123456");
     function add() {
       childData.dialogVisible = true;
     }
@@ -166,6 +158,9 @@ export default {
       rules,
       add,
     };
+  },
+  components: {
+    CanvasAnimation,
   },
   beforeCreate() {
     console.log("beforeCreate");
@@ -254,7 +249,7 @@ export default {
   align-items: center;
   height: 60px;
   line-height: 60px;
-  background: #666;
+  background: #ddd;
   padding: 0 20px;
 }
 .but_goback {
