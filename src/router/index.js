@@ -74,6 +74,24 @@ const routes = [
       type: "practice",
     },
   },
+
+  {
+    path: "/threejs/complex",
+    name: "complex",
+    component: () => import("../pages/threeJs/complex/index.vue"),
+    meta: {
+      type: "threejs",
+    },
+  },
+
+  {
+    path: "/threejs/simple",
+    name: "simple",
+    component: () => import("../pages/threeJs/simple"),
+    meta: {
+      type: "threejs",
+    },
+  },
 ];
 // console.log(VueRouter)
 // 3. 创建路由实例并传递 `routes` 配置
