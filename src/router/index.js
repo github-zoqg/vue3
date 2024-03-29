@@ -92,6 +92,31 @@ const routes = [
       type: "threejs",
     },
   },
+  // 毕设路由
+  // {
+  //   path: "/",
+  //   name: "index",
+  //   component: () => import("@/pages/store/index.vue"),
+  //   meta: { title: "家具商城" },
+  // },
+  // {
+  //   path: "/goodsDetail",
+  //   name: "goodsDetail",
+  //   component: () => import("@/pages/store/index.vue"),
+  //   meta: { title: "商品详情" },
+  // },
+  // {
+  //   path: "/register",
+  //   name: "register",
+  //   component: () => import("@/pages/store/register.vue"),
+  //   meta: { title: "注册页" },
+  // },
+  // {
+  //   path: "/personal",
+  //   name: "personal",
+  //   component: () => import("@/pages/store/personal.vue"),
+  //   meta: { title: "个人详情" },
+  // },
 ];
 // console.log(VueRouter)
 // 3. 创建路由实例并传递 `routes` 配置

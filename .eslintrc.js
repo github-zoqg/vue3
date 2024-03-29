@@ -16,6 +16,13 @@ module.exports = {
     "vue/no-unused-components": "warn",
     "vue/no-multiple-template-root": 0,
     "vue/no-unused-vars": "off",
+    // "prettier/prettier": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        endOfLine: "auto",
+      },
+    ],
   },
   parserOptions: {
     parser: "babel-eslint",
