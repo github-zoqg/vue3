@@ -1,11 +1,11 @@
 const path = require("path");
 const cdnJs = {
   // 第三方依赖
-  vue: "https://unpkg.com/vue@3/dist/vue.global.js",
+  vue: "https://unpkg.com/vue@3.4.21/dist/vue.global.js",
   VueRouter: "https://unpkg.com/vue-router@4.1.6/dist/vue-router.global.js",
   // VueI18n:
   //   "//s1.e.vhall.com/common-static/middle/vue-i18n/8.26.7/vue-i18n.min.js",
-  ElementUi: "https://unpkg.com/element-plus@2.3.3",
+  ElementUi: "https://unpkg.com/element-plus@2.3.3/dist/index.full.js",
   // html2canvas:
   //   "//s2.e.vhall.com/common-static/middle/html2canvas/1.0.0-rc.4/html2canvas.min.js",
   // dayjs: "//s2.e.vhall.com/common-static/middle/dayjs/1.10.8/dayjs.min.js",
