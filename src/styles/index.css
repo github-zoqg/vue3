@@ -1,38 +1,55 @@
-*{
-    padding: 0;
-    margin: 0;
+* {
+  padding: 0;
+  margin: 0;
 }
-body{
-    font-size: 16px;
+body {
+  font-size: 16px;
 }
-canvas{
-    vertical-align: bottom;
+canvas {
+  vertical-align: bottom;
 }
-.w100{
-    width: 100%;
+.w100 {
+  width: 100%;
 }
-.w80{
-    width: 80%;
+.w80 {
+  width: 80%;
 }
-.w60{
-    width: 60%;
+.w60 {
+  width: 60%;
 }
-.w50{
-    width: 50%;
+.w50 {
+  width: 50%;
 }
-.w30{
-    width: 30%;
+.w30 {
+  width: 30%;
 }
-.w20{
-    width: 20%;
+.w20 {
+  width: 20%;
 }
-.h100{
-    height: 100%;
+.h100 {
+  height: 100%;
 }
-.center{
-    margin: auto;
+.center {
+  margin: auto;
 }
-.message_width{
-    width: 400px;
-    max-width: 70%;
+.message_width {
+  width: 400px;
+  max-width: 70%;
 }
+.pointer {
+  cursor: pointer;
+}
+.ml10 {
+  margin-left: 10px;
+}
+.mt10 {
+  margin-top: 10px;
+}
+.title {
+  padding: 5px 0;
+  font-size: 24px;
+  font-weight: bold;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+/* @import后 样式不生效 */
+/* @import "./reset-ele-default-theme.scss"; */

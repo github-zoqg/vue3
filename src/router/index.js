@@ -9,13 +9,13 @@ import * as VueRouter from "vue-router";
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
-  {
-    path: "/",
-    // redirect: "/home",
-    name: "me",
-    component: () => import("../pages/me/index.vue"),
-    meta: { hidden: true, title: "个人简历" },
-  },
+  // {
+  //   path: "/",
+  //   // redirect: "/home",
+  //   name: "me",
+  //   component: () => import("../pages/me/index.vue"),
+  //   meta: { hidden: true, title: "个人简历" },
+  // },
   // 登录页
   {
     path: "/login",
@@ -93,30 +93,38 @@ const routes = [
     },
   },
   // 毕设路由
-  // {
-  //   path: "/",
-  //   name: "index",
-  //   component: () => import("@/pages/store/index.vue"),
-  //   meta: { title: "家具商城" },
-  // },
-  // {
-  //   path: "/goodsDetail",
-  //   name: "goodsDetail",
-  //   component: () => import("@/pages/store/index.vue"),
-  //   meta: { title: "商品详情" },
-  // },
-  // {
-  //   path: "/register",
-  //   name: "register",
-  //   component: () => import("@/pages/store/register.vue"),
-  //   meta: { title: "注册页" },
-  // },
-  // {
-  //   path: "/personal",
-  //   name: "personal",
-  //   component: () => import("@/pages/store/personal.vue"),
-  //   meta: { title: "个人详情" },
-  // },
+  {
+    path: "/",
+    redirect: "/index",
+    component: () => import("@/pages/store/index.vue"),
+    meta: { title: "家具商城" },
+    children: [
+      {
+        path: "index",
+        name: "index",
+        component: () => import("@/pages/store/list.vue"),
+        meta: { title: "商城首页" },
+      },
+      {
+        path: "goodsDetail",
+        name: "goodsDetail",
+        component: () => import("@/pages/store/goodsDetail.vue"),
+        meta: { title: "商品详情" },
+      },
+      {
+        path: "shopingCart",
+        name: "shopingCart",
+        component: () => import("@/pages/store/shopingCart.vue"),
+        meta: { title: "购物车" },
+      },
+      {
+        path: "personal",
+        name: "personal",
+        component: () => import("@/pages/store/personal.vue"),
+        meta: { title: "个人详情" },
+      },
+    ],
+  },
 ];
 // console.log(VueRouter)
 // 3. 创建路由实例并传递 `routes` 配置

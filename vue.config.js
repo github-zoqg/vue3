@@ -64,6 +64,7 @@ module.exports = {
     });
   },
   configureWebpack: {
+    devtool: "source-map",
     // 防止将某些 import 的包(package)打包到 bundle 中
     externals: {
       vue: "Vue",
@@ -80,9 +81,9 @@ module.exports = {
     },
     plugins: [...proPlugins],
     optimization: {
-      // runtimeChunk: {
-      //   name: "runtime-bound",
-      // },
+      runtimeChunk: {
+        name: "runtime",
+      },
       splitChunks: {
         cacheGroups: {
           vendor: {
@@ -94,23 +95,20 @@ module.exports = {
             minSize: 0,
             priority: 100,
           },
-          // common: {
-          //   chunks: "all",
-          //   test: /[\\/]src[\\/]js[\\/]/,
-          //   name: "common",
-          //   minChunks: 2,
-          //   maxInitialRequests: 5,
-          //   minSize: 0,
-          //   priority: 60,
-          // },
+          common: {
+            chunks: "all",
+            // test: /[\\/]src[\\/]js[\\/]/,
+            name: "common",
+            minChunks: 2,
+            maxInitialRequests: 5,
+            minSize: 0,
+            priority: 60,
+          },
           styles: {
             name: "styles",
             test: /\.(sa|sc|c)ss$/,
             chunks: "all",
             enforce: true,
-          },
-          runtimeChunk: {
-            name: "manifest",
           },
         },
       },

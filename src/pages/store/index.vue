@@ -2,209 +2,183 @@
 <template>
   <div class="base_box">
     <header class="header_box">
-      <div class="header_wid"><span>登录</span> / <span>注册</span></div>
-    </header>
-    <main class="content">
-      <div class="margin_auto">
-        <el-carousel height="300px" class="w_300">
-          <el-carousel-item v-for="item in 4" :key="item">
-            <img
-              :src="`https://source.unsplash.com/random/800x600?${item}`"
-              alt=""
-              class="cover_img"
-            />
-          </el-carousel-item>
-        </el-carousel>
-        <div class="search_box">
-          <input type="text" class="search_input" />
-          <input type="submit" class="submit_input" value="搜索" />
+      <div class="header_wid">
+        <div class="header_left">
+          <div v-if="!$store.state.user?.token">
+            <span @click="registerFn('login')" class="pointer">登录</span> /
+            <span @click="registerFn('register')" class="pointer">注册</span>
+          </div>
+          <div v-else>
+            Hi, {{ $store.state.user?.name }}
+            <span class="pointer ml10" @click="logout" link>[退出]</span>
+          </div>
         </div>
-        <div>
-          <ul class="list_box">
-            <li v-for="i in 42" :key="i">
-              <img
-                :src="`https://source.unsplash.com/random/800x600?${i}`"
-                alt=""
-              />
-              <div class="goodsName">
-                <span class="title-text">
-                  西装套装女2023春秋新款高级感宽松显瘦西服外套休闲阔腿裤两件套
-                </span>
-              </div>
-              <div class="money">
-                <span class="coupon-price-title">¥</span>
-                <span class="coupon-price">123</span>
-              </div>
-              <div class="store">店铺</div>
-              <div class="num">
-                <span>月销 {{ i }}</span>
-              </div>
-            </li>
-          </ul>
+        <div class="header_right">
+          <span @click="goIndex" class="pointer ml10">商城首页</span>
+          <span @click="shopingCart" class="pointer ml10">购物车</span>
+          <span @click="myGoods" class="pointer ml10">个人详情</span>
+          <span @click="contact" class="pointer ml10">联系客服</span>
         </div>
       </div>
+    </header>
+    <main class="content">
+      <el-icon @click="goback" class="i_goback" v-if="$route.path !== '/index'"
+        ><Back
+      /></el-icon>
+      <router-view class="content-base"></router-view>
     </main>
-    <footer class="footer">底部</footer>
+    <footer class="footer">
+      &copy; {{ new Date().getFullYear() }} zoqg.com 版权所有
+    </footer>
+    <Register
+      :dialogVisible="dialogVisible"
+      :registerProps="registerProps"
+      @closeDialog="() => closeDialog()"
+    />
   </div>
 </template>
 
 <script>
-export default {};
+import Register from "./register.vue";
+export default {
+  components: {
+    Register,
+  },
+  inject: ["events"],
+  data() {
+    return {
+      dialogVisible: false,
+      registerProps: {},
+      searchText: "",
+    };
+  },
+  computed: {
+    isLogin() {
+      return false;
+    },
+  },
+  mounted() {
+    this.events.on("needLogin", () => {
+      this.registerFn("login");
+    });
+  },
+  methods: {
+    registerFn(type) {
+      this.dialogVisible = true;
+      console.log(type);
+      if (type === "login") {
+        this.registerProps = {
+          status: "login",
+        };
+      } else {
+        this.registerProps = {
+          status: "register",
+        };
+      }
+    },
+    // 关闭登录/注册弹窗
+    closeDialog() {
+      console.log("+++++++++++++++");
+      this.dialogVisible = false;
+    },
+    // 返回首页
+    goIndex() {
+      console.log("goIndex");
+      this.$router.push("/");
+    },
+    // 购物车
+    shopingCart() {
+      console.log("shopingCart");
+      if (this.$store.state.user?.token) {
+        this.$router.push("/shopingCart");
+      } else {
+        this.needLogin();
+      }
+    },
+    // 我的商品
+    myGoods() {
+      if (this.$store.state.user?.token) {
+        this.$router.push("/personal");
+      } else {
+        this.needLogin();
+      }
+    },
+    needLogin() {
+      this.$alert("请先登录", "提示", {
+        confirmButtonText: "OK",
+        callback: () => {
+          this.registerFn("login");
+        },
+      });
+    },
+    // 联系客服
+    contact() {
+      this.$alert("欢迎访问客户服务中心，请来电咨询：010-88888888", "联系方式");
+    },
+    goback() {
+      this.$router.go(-1);
+    },
+    logout() {
+      this.$confirm("确定退出登录吗?", "提示", {
+        confirmButtonText: "确定",
+        cancelButtonText: "取消",
+        type: "warning",
+      }).then(() => {
+        this.$store.commit("setUser", null);
+      });
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-.base_box {
+$wid_1180: 1180px;
+$wid: 1200px;
+.content-box {
   background: #eee;
 }
+.base_box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 .header_box {
-  z-index: 10000;
   width: 100%;
   background-color: #f5f5f5;
   border-bottom: 1px solid #eee;
   height: 40px;
-  position: absolute;
-  top: 0;
   line-height: 40px;
-}
-$wid: 1200px;
-.margin_auto {
-  margin: auto;
-  text-align: center;
-}
-.cover_img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-}
-.w_300 {
-  width: 80%;
-  margin: auto;
+  font-size: 14px;
+  .header_wid {
+    width: $wid;
+    margin: auto;
+    display: flex;
+    color: #6c6c6c;
+    .header_left {
+      width: 40%;
+    }
+    .header_right {
+      flex-grow: 1;
+      text-align: right;
+    }
+  }
 }
 .content {
-  width: $wid;
-  margin: 40px auto;
-  height: calc(100vh - 80px);
+  position: relative;
+  width: 100%;
   overflow: auto;
   scrollbar-width: none;
-  .search_box {
-    width: 690px;
+  flex-grow: 1;
+  .content-base {
+    padding: 20px;
+    width: 1220px;
     margin: auto;
-    border: 3px solid #f03726;
-    border-right: 0;
-    height: 34px;
-    position: relative;
-  }
-  .search_input {
-    border: 0;
-    width: 100%;
-    outline: 0;
+    background-color: #f5f5f5;
+    min-height: 100%;
     box-sizing: border-box;
-    line-height: 34px;
   }
-  .submit_input {
-    width: 95px;
-    height: 40px;
-    border: 0;
-    position: absolute;
-    top: -3px;
-    right: 0;
-    background: #f03726;
-    color: #f5f5f2;
-    font-size: 18px;
-  }
-  .list_box {
-    width: 1180px;
-    font-size: 0;
-    font-family: "helvetica neue", tahoma, "hiragino sans gb", stheiti,
-      "wenquanyi micro hei", sans-serif;
-    border-top: 1px solid #f2f2f2;
-    border-left: 1px solid #f2f2f2;
-    text-align: initial;
-    margin: 20px auto;
-    li {
-      width: 236px;
-      height: 368px;
-      box-sizing: border-box;
-      display: inline-block;
-      font-size: 12px;
-      border: 1px solid #f2f2f2;
-      border-top: none;
-      border-left: none;
-      background: #fff;
-      vertical-align: top;
-      padding: 22px 20px 0;
-      &:hover {
-        border: 1px solid #fd3f31;
-        text-decoration: none;
-        transform: translate(-1px, -1px);
-      }
-    }
-    img {
-      width: 194px;
-      height: 198px;
-      object-fit: cover;
-    }
-    .goodsName {
-      height: 40px;
-      white-space: normal;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      font-size: 14px;
-      color: #9b9b9b;
-      line-height: 20px;
-    }
-    .money {
-      height: 25px;
-      padding: 6px 0 0;
-      line-height: 1.6;
-      .coupon-price-title {
-        vertical-align: baseline;
-        font-family: PingFangSC-Medium;
-        font-size: 18px;
-        color: #fd3f31;
-      }
-      .coupon-price {
-        margin-left: 4px;
-        vertical-align: baseline;
-        text-align: left;
-        line-height: 25px;
-        font-family: PingFangSC-Medium;
-        font-size: 18px;
-        color: #fd3f31;
-      }
-    }
-    .store {
-      margin-top: 9px;
-      font-size: 12px;
-      color: #9b9b9b;
-      line-height: 17px;
-      background-color: #fff;
-    }
-    .num {
-      margin-top: 4px;
-      border-top: 1px solid #f2f2f2;
-      padding: 9px 0;
-      position: relative;
-      span {
-        position: absolute;
-        right: 0;
-        top: 9px;
-        color: #9b9b9b;
-        font-size: 12px;
-        line-height: 17px;
-        background: #fff;
-        padding-left: 12px;
-      }
-    }
-  }
-}
-.header_wid {
-  width: $wid;
-  margin: auto;
 }
 .footer {
   width: 100%;
@@ -213,7 +187,29 @@ $wid: 1200px;
   border-top: 1px solid #eee;
   text-align: center;
   line-height: 40px;
-  position: absolute;
-  bottom: 0;
+  font-size: 12px;
+  color: #333;
+  opacity: 0.5;
+}
+$el-button-hover-text-color: #f03726;
+.pointer:hover {
+  color: $el-button-hover-text-color;
+}
+.i_goback {
+  position: fixed;
+  top: 60px;
+  right: calc((100% - $wid_1180) / 2);
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+  background: white;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  font-weight: bold;
+  &:hover {
+    background: $el-button-hover-text-color;
+    color: white;
+  }
 }
 </style>

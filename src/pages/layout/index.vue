@@ -32,8 +32,8 @@ export default {
   },
   methods: {
     init() {
-      let hiddenUrl = ["#/", "#/login"];
-      this.isShowHeader = !hiddenUrl.includes(location.hash);
+      // let hiddenUrl = ["#/", "#/login"];
+      // this.isShowHeader = !hiddenUrl.includes(location.hash);
     },
   },
 };
