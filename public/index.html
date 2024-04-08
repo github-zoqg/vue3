@@ -9,10 +9,7 @@
       content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no,shrink-to-fit=no,viewport-fit=cover"
     />
     <title><%= htmlWebpackPlugin.options.title %></title>
-    <link
-      rel="icon"
-      href="https://github.githubassets.com/favicons/favicon.png"
-    />
+    <link rel="icon" href="<%= BASE_URL %>favicon.png" />
     <!-- asd -->
     <% for (const css of Object.values(htmlWebpackPlugin.options.cdnCss)) { %>
     <%if(css){%>
