@@ -4,7 +4,7 @@
     <el-carousel height="300px" class="w_300">
       <el-carousel-item v-for="item in 4" :key="item">
         <img
-          :src="`https://source.unsplash.com/random/800x600?${item}`"
+          :src="`https://source.unsplash.com/random/944x300?${item}`"
           alt=""
           class="cover_img"
         />
@@ -25,7 +25,7 @@
       <ul class="list_box">
         <li v-for="i in 42" :key="i" class="pointer" @click="showDetail(i)">
           <img
-            :src="`https://source.unsplash.com/random/800x600?${i}`"
+            :src="`https://source.unsplash.com/random/200x200?${i}`"
             alt=""
           />
           <div class="goodsName">
