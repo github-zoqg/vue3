@@ -9,6 +9,10 @@ let INTERFACE = {
   logOff: "/user/logOff",
 };
 
+const register = (params = {}) => {
+  return axios.post(INTERFACE.register, params);
+};
+
 const login = (params = {}) => {
   return axios.post(INTERFACE.login, params);
 };
@@ -20,4 +24,4 @@ const exit = () => {
   });
 };
 
-export default { login, exit };
+export default { login, exit, register };

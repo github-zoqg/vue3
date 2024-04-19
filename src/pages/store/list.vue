@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import request from "@/api/goods.js";
 export default {
   data() {
     return {
@@ -56,16 +57,32 @@ export default {
       searchText: "",
     };
   },
+  mounted() {
+    this.getGoodsList();
+  },
   methods: {
     searchFn() {
       console.log("searchFn", this.searchText);
+      this.getGoodsList();
+    },
+    getGoodsList() {
+      request
+        .getGoodsList({
+          params: {
+            keyword: this.searchText,
+          },
+        })
+        .then((res) => {
+          console.log("getGoodsList", res);
+        });
     },
     showDetail(id) {
       console.log("showDetail", id);
       this.$router.push({
         name: "goodsDetail",
         query: {
-          id: id,
+          goodsId: id,
+          storeId: 1,
         },
       });
     },

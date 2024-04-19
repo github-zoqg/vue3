@@ -50,6 +50,8 @@
 <script setup>
 import { ref, defineProps, defineEmits, computed, reactive } from "vue";
 import { useStore } from "vuex";
+import request from "@/api/user.js";
+import { ElMessage } from "element-plus";
 
 const props = defineProps(["dialogVisible", "registerProps"]);
 const store = useStore();
@@ -84,7 +86,7 @@ const rules = {
     { required: true, message: "请再次输入密码", trigger: "blur" },
     {
       validator: (rule, value, callback) => {
-        if (value !== ruleForm.value.password) {
+        if (value !== ruleForm.password) {
           callback(new Error("两次输入的密码不一致!"));
         } else {
           callback();
@@ -103,20 +105,36 @@ const ruleForm = reactive({
 });
 
 const ruleFormRef = ref(null);
-console.log(ruleFormRef, "ruleFormRef");
+// console.log(ruleFormRef, "ruleFormRef");
 
-const submit = (ele) => {
+const submit = () => {
   // TODO 注册接口未开发
-  console.log(ruleForm.phone, ele, "ruleForm.value");
   ruleFormRef.value.validate((valid, fields) => {
     if (valid) {
       console.log("submit!");
-      store.commit("setUser", {
-        token: "123456",
-        name: "张三",
-        phone: ruleForm.phone,
+      const api = props.registerProps.status === "login" ? "login" : "register";
+      request[api](ruleForm).then((res) => {
+        console.log(res, "res");
+        if (res.status === 200) {
+          if (props.registerProps.status === "login") {
+            store.commit("setUser", {
+              token: res.data.token,
+              name: "张三",
+              phone: ruleForm.phone,
+            });
+            ElMessage({
+              message: "登陆成功",
+              type: "success",
+            });
+          } else {
+            ElMessage({
+              message: "注册成功，请登录！",
+              type: "success",
+            });
+          }
+          handleClose();
+        }
       });
-      handleClose(ele);
     } else {
       console.log("error submit!", fields);
     }

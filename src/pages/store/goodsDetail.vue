@@ -41,26 +41,72 @@
 
 <script setup>
 import { useRoute } from "vue-router";
-import { inject } from "vue";
+import { inject, onBeforeMount } from "vue";
 import { useStore } from "vuex";
+import request from "@/api/goods.js";
 
 // 获取全局参数
 const route = useRoute();
 const eventBus = inject("events");
 const store = useStore();
+let { goodsId, storeId } = route.query;
+
+// console.log("route", route.query, store);
+
+// 这里是假数据
+const goodsDetail = {
+  goodsId: goodsId,
+  goodsName: "今年流行漂亮盐系轻熟...",
+  storeName: "盐城盐湖店",
+  storeId: storeId,
+  price: 123,
+  imgurl: "https://source.unsplash.com/random/800x600?id=1",
+};
+//
+onBeforeMount(() => {
+  getGoodsDetail();
+});
+// 获取商品详情
+const getGoodsDetail = () => {
+  request
+    .getGoodsDetail({
+      params: {
+        goodsId,
+        storeId,
+      },
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        console.log("getGoodsList", res);
+      }
+    });
+};
 
 // 立即购买
 const handleBuyClick = () => {
-  if (!store.state.user.token) {
+  if (!store.state.user?.token) {
     return Login();
   }
+  request
+    .getGoodsDetail({
+      params: {
+        goodsId,
+        storeId,
+      },
+    })
+    .then((res) => {
+      console.log("getGoodsList", res);
+    });
   console.log("立即购买");
 };
 // 加入购物车
 const handleCardClick = () => {
-  if (!store.state.user.token) {
+  if (!store.state.user?.token) {
     return Login();
   }
+  request.addCart(goodsDetail).then((res) => {
+    console.log("getGoodsList", res);
+  });
   console.log("加入购物车");
 };
 // need登录
