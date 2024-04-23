@@ -8,6 +8,7 @@ let INTERFACE = {
   addCart: "/goods/addCart",
   deleteCart: "/goods/deleteCart",
   getCartList: "/goods/getCartList",
+  updateCartList: "/goods/updateCartList",
   addRecord: "/goods/addRecord",
   getRecordList: "/goods/getRecordList",
   pay: "/goods/pay",
@@ -23,15 +24,19 @@ const getGoodsDetail = (params = {}) => {
 
 const addCart = (params = {}) => axios.post(INTERFACE.addCart, params);
 
-const deleteCart = (params = {}) => axios.post(INTERFACE.exit, params);
+const deleteCart = (params = {}) => axios.post(INTERFACE.deleteCart, params);
 
-const getCartList = (params = {}) => axios.post(INTERFACE.exit, params);
+const getCartList = (params = {}) => axios.post(INTERFACE.getCartList, params);
 
-const addRecord = (params = {}) => axios.post(INTERFACE.exit, params);
+const updateCartList = (params = {}) =>
+  axios.post(INTERFACE.updateCartList, params);
 
-const getRecordList = (params = {}) => axios.post(INTERFACE.exit, params);
+const addRecord = (params = {}) => axios.post(INTERFACE.addRecord, params);
 
-const pay = (params = {}) => axios.post(INTERFACE.exit, params);
+const getRecordList = (params = {}) =>
+  axios.post(INTERFACE.getRecordList, params);
+
+const pay = (params = {}) => axios.post(INTERFACE.pay, params);
 
 export default {
   getGoodsList,
@@ -39,6 +44,7 @@ export default {
   addCart,
   deleteCart,
   getCartList,
+  updateCartList,
   addRecord,
   getRecordList,
   pay,

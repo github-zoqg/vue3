@@ -13,21 +13,21 @@
         class="goods-img"
       />
       <div class="goods-info">
-        <h2>{{ item.name }}</h2>
-        <p>商品描述：{{ item.desc }}</p>
+        <h2>{{ item.goodsName }}</h2>
+        <p>商品描述：{{ item.goodsName }}</p>
         <div>
           单价：<span class="price">￥{{ item.price }}</span>
         </div>
         <div>
           数量：
           <el-input-number
-            v-model="item.count"
+            v-model="item.num"
             :min="1"
-            @change="handleCountChange(item)"
+            @change="handleItemCountChange(item)"
           ></el-input-number>
         </div>
-        <div>小计：￥{{ item.price * item.count }}</div>
-        <div>商店名称</div>
+        <div>小计：￥{{ item.price * item.num }}</div>
+        <div>商店名称：{{ item.storeName }}</div>
       </div>
       <div class="delete_button" @click="handleDelete(item)">删除</div>
     </div>
@@ -40,81 +40,13 @@
 
 <script setup>
 import { computed, onMounted, reactive, ref } from "vue";
+import request from "@/api/goods.js";
+import { ElMessage } from "element-plus";
+import { useStore } from "vuex";
 
-const goodsList = reactive([
-  {
-    id: 1,
-    name: "商品1",
-    desc: "商品描述1",
-    price: 100,
-    count: 1,
-    shop: "商店1",
-    selected: true,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-]);
+const store = useStore();
+
+let goodsList = ref([]);
 const totalPrice = computed(() => {
   return selectedGoods.value.reduce(
     (acc, cur) => acc + cur.price * cur.count,
@@ -125,20 +57,43 @@ const selectedGoods = ref([]);
 // 删除商品
 const handleDelete = (item) => {
   console.log(item, "删除");
-  const index = goodsList.indexOf(item);
-  goodsList.splice(index, 1);
-  console.log(goodsList, "删除后");
-  handleCountChange(item);
+  request
+    .deleteCart({
+      ...item,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        ElMessage({
+          message: "删除成功",
+          type: "success",
+        });
+        getGoodsList();
+      }
+    });
 };
 // 商品数量变化
 const handleCountChange = (item) => {
   console.log(item);
-  selectedGoods.value = goodsList.filter((i) => i.selected);
+  selectedGoods.value = goodsList.value.filter((i) => i.selected);
+};
+// 商品数量变化
+const handleItemCountChange = (item) => {
+  console.log(item);
+  request.updateCartList({ ...item, source: "shoppingCart" });
 };
 /* 获取商品列表 */
 const getGoodsList = () => {
-  handleCountChange();
-  return goodsList;
+  request
+    .getCartList({
+      userId: store.state.user?.userId,
+    })
+    .then((res) => {
+      console.log("getGoodsList", res);
+      if (res.status === 200) {
+        handleCountChange();
+        goodsList.value = res.list;
+      }
+    });
 };
 onMounted(() => {
   getGoodsList();

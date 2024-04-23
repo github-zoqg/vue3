@@ -12,6 +12,7 @@ const store = createStore({
       state.user = data;
       if (!data) {
         localStorage.removeItem("user");
+        location.hash = "/";
         return;
       }
       localStorage.setItem("user", JSON.stringify(data));

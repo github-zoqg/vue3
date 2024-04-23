@@ -39,8 +39,10 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="handleClose">取消</el-button>
-          <el-button type="primary" @click="submit"> 提交 </el-button>
+          <el-button @click="handleClose">取 消</el-button>
+          <el-button type="primary" @click="submit">
+            {{ registerProps.status === "login" ? "登 录" : "注 册" }}
+          </el-button>
         </div>
       </template>
     </el-dialog>
@@ -118,14 +120,14 @@ const submit = () => {
         if (res.status === 200) {
           if (props.registerProps.status === "login") {
             store.commit("setUser", {
-              token: res.data.token,
               name: "张三",
-              phone: ruleForm.phone,
+              ...res.data,
             });
             ElMessage({
               message: "登陆成功",
               type: "success",
             });
+            location.reload();
           } else {
             ElMessage({
               message: "注册成功，请登录！",

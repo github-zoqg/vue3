@@ -2,7 +2,7 @@ import axios from "axios";
 import { ElMessage } from "element-plus";
 import store from "@/store";
 
-console.log(store, "store");
+console.log(store.state.user?.token, "store");
 
 const instance = axios.create({
   baseURL: "http://127.0.0.1:8089",
@@ -54,6 +54,14 @@ instance.interceptors.response.use(
     // console.log(response, "response");
     if (response.data.status === 200) {
       return response.data;
+    }
+    if (response.data.status === 401) {
+      store.commit("setUser", null);
+      ElMessage({
+        message: response.data.message,
+        type: "warning",
+      });
+      return Promise.reject(response.data);
     } else {
       ElMessage({
         message: response.data.message,
@@ -65,7 +73,7 @@ instance.interceptors.response.use(
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
-    return Promise.reject(error);
+    // return Promise.reject(error);
   }
 );
 

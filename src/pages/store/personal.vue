@@ -28,10 +28,15 @@
 </template>
 
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, onBeforeMount } from "vue";
+import request from "@/api/goods.js";
+import { ElMessage } from "element-plus";
+import { useStore } from "vuex";
+
+const store = useStore();
 
 const activeName = ref("third");
-const goodsList = reactive([
+const goodsList = ref([
   {
     id: 1,
     name: "商品1",
@@ -106,9 +111,28 @@ const goodsList = reactive([
   },
 ]);
 
+onBeforeMount(() => {
+  getRecordList(2);
+});
+
+function getRecordList(status) {
+  console.log(goodsList);
+  request
+    .getRecordList({
+      userId: store.state.user.userId,
+      status: status,
+    })
+    .then((res) => {
+      console.log("getGoodsList", res);
+      if (res.status === 200) {
+        goodsList.value = res.list;
+      }
+    });
+}
+
 function handleClick(tab, event) {
-  console.log(tab, event);
-  // TODO	接口请求相应数据
+  // console.log(tab, event);
+  getRecordList(tab.index);
 }
 function sales(item) {
   console.log(item);
