@@ -16,10 +16,13 @@
           class="goods-img"
         />
         <div class="goods-info">
-          <h2>{{ item.name }}</h2>
-          <p>商品描述：{{ item.desc }}</p>
-          <div>小计：￥{{ item.price * item.count }}</div>
-          <div>商店名称</div>
+          <h2>{{ item.goodsName }}</h2>
+          <p>商品描述：{{ item.goodsName }}</p>
+          <p>数量：{{ item.num }}</p>
+          <div>
+            小计：<span class="price">￥{{ item.price * item.num }}</span>
+          </div>
+          <div>商店名称：{{ item.storeName }}</div>
         </div>
         <div class="delete_button" @click="sales(item)">申请售后</div>
       </div>
@@ -36,80 +39,7 @@ import { useStore } from "vuex";
 const store = useStore();
 
 const activeName = ref("third");
-const goodsList = ref([
-  {
-    id: 1,
-    name: "商品1",
-    desc: "商品描述1",
-    price: 100,
-    count: 1,
-    shop: "商店1",
-    selected: true,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-  {
-    id: 2,
-    name: "商品2",
-    desc: "商品描述2",
-    price: 200,
-    count: 2,
-    shop: "商店2",
-    selected: false,
-  },
-]);
+const goodsList = ref([]);
 
 onBeforeMount(() => {
   getRecordList(2);

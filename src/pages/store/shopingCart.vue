@@ -48,10 +48,7 @@ const store = useStore();
 
 let goodsList = ref([]);
 const totalPrice = computed(() => {
-  return selectedGoods.value.reduce(
-    (acc, cur) => acc + cur.price * cur.count,
-    0
-  );
+  return selectedGoods.value.reduce((acc, cur) => acc + cur.price * cur.num, 0);
 });
 const selectedGoods = ref([]);
 // 删除商品

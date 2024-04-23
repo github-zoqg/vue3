@@ -23,6 +23,11 @@
         <span class="coupon-price">{{ goodsDetail.price }}</span>
       </div>
 
+      <div>
+        <span class="coupon-price-title">数量：</span>
+        <el-input-number v-model="goodsDetail.num" :min="1"></el-input-number>
+      </div>
+
       <div class="address">
         <span>配送：</span>
         <el-select
@@ -171,7 +176,7 @@ const getGoodsDetail = () => {
     })
     .then((res) => {
       if (res.status === 200) {
-        goodsDetail.value = res.data;
+        goodsDetail.value = { ...res.data, num: 1 };
         console.log("getGoodsList", res);
       }
     });
@@ -205,7 +210,7 @@ const handleCardClick = () => {
   }
   request
     .addCart({
-      ...goodsDetail,
+      ...goodsDetail.value,
       userId: store.state.user.userId,
     })
     .then((res) => {
