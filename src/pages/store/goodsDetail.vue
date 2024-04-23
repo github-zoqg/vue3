@@ -3,20 +3,24 @@
   <div class="goods-detail">
     <div class="left_box">
       <img
-        :src="`https://source.unsplash.com/random/800x600?${route.query.id}`"
+        :src="`${goodsDetail.imgurl}/800x600?${route.query.goodsId}`"
         alt=""
       />
     </div>
     <div class="right_box">
       <div>
         <h1 class="title">
-          {{ route.query.name || "今年流行漂亮盐系轻熟..." }}
+          {{ goodsDetail.goodsName || "今年流行漂亮盐系轻熟..." }}
         </h1>
+      </div>
+      <div class="mt10">
+        <span>店铺：</span>
+        {{ goodsDetail.storeName || "盐城盐湖店" }}
       </div>
 
       <div class="money">
         <span class="coupon-price-title">¥</span>
-        <span class="coupon-price">123</span>
+        <span class="coupon-price">{{ goodsDetail.price }}</span>
       </div>
 
       <div class="address">

@@ -3,6 +3,7 @@
 import axios from "../uilts/axios";
 
 let INTERFACE = {
+  addGoods: "/goods/addGoods",
   getGoodsList: "/goods/getGoodsList",
   getGoodsDetail: "/goods/getGoodsDetail",
   addCart: "/goods/addCart",
@@ -13,6 +14,8 @@ let INTERFACE = {
   getRecordList: "/goods/getRecordList",
   pay: "/goods/pay",
 };
+
+const addGoods = (params = {}) => axios.post(INTERFACE.addGoods, params);
 
 const getGoodsList = (params = {}) => {
   return axios.get(INTERFACE.getGoodsList, params);
@@ -39,6 +42,7 @@ const getRecordList = (params = {}) =>
 const pay = (params = {}) => axios.post(INTERFACE.pay, params);
 
 export default {
+  addGoods,
   getGoodsList,
   getGoodsDetail,
   addCart,

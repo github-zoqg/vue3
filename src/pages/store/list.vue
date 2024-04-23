@@ -23,23 +23,25 @@
     </div>
     <div>
       <ul class="list_box">
-        <li v-for="i in 42" :key="i" class="pointer" @click="showDetail(i)">
-          <img
-            :src="`https://source.unsplash.com/random/200x200?${i}`"
-            alt=""
-          />
+        <li
+          v-for="(i, index) in goodsList"
+          :key="index"
+          class="pointer"
+          @click="showDetail(i)"
+        >
+          <img :src="`${i.imgurl}/200x200?${index}`" alt="" />
           <div class="goodsName">
             <span class="title-text">
-              西装套装女2023春秋新款高级感宽松显瘦西服外套休闲阔腿裤两件套
+              {{ i.goodsName }}
             </span>
           </div>
           <div class="money">
             <span class="coupon-price-title">¥</span>
-            <span class="coupon-price">123</span>
+            <span class="coupon-price">{{ i.price }}</span>
           </div>
-          <div class="store">店铺</div>
+          <div class="store">店铺 {{ i.storeName }}</div>
           <div class="num">
-            <span>月销 {{ i }}</span>
+            <span>月销 {{ i.volume }}</span>
           </div>
         </li>
       </ul>
@@ -55,6 +57,7 @@ export default {
       dialogVisible: false,
       registerProps: {},
       searchText: "",
+      goodsList: [],
     };
   },
   mounted() {
@@ -73,16 +76,27 @@ export default {
           },
         })
         .then((res) => {
+          this.goodsList = res.list;
           console.log("getGoodsList", res);
         });
     },
-    showDetail(id) {
-      console.log("showDetail", id);
+    showDetail(item) {
+      console.log("showDetail", item);
+      // request
+      //   .addGoods({
+      //     ...item,
+      //     goodsId: null,
+      //     storeId: item.storeId + 4,
+      //   })
+      //   .then((res) => {
+      //     console.log("getGoodsList", res);
+      //     this.$message.success("添加成功");
+      //   });
       this.$router.push({
         name: "goodsDetail",
         query: {
-          goodsId: id,
-          storeId: 1,
+          goodsId: item.goodsId,
+          storeId: item.storeId,
         },
       });
     },
