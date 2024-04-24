@@ -23,7 +23,7 @@ const instance = axios.create({
   transformResponse: [
     function (data) {
       // 对接收的 data 进行任意转换处理
-      // console.log(data, "response-data");
+      // console.log(typeof data, "response-data");
 
       return typeof data == "object" ? data : JSON.parse(data);
       // return data;
@@ -61,19 +61,19 @@ instance.interceptors.response.use(
         message: response.data.message,
         type: "warning",
       });
-      return Promise.reject(response.data);
+      return response.data;
     } else {
       ElMessage({
         message: response.data.message,
         type: "warning",
       });
-      return Promise.reject(response.data);
+      return response.data;
     }
   },
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
-    // return Promise.reject(error);
+    return Promise.reject(error);
   }
 );
 
