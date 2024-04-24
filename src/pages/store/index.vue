@@ -152,16 +152,17 @@ $wid: 1200px;
   line-height: 40px;
   font-size: 14px;
   .header_wid {
-    width: $wid;
     margin: auto;
     display: flex;
     color: #6c6c6c;
     .header_left {
       width: 40%;
+      padding-left: 20px;
     }
     .header_right {
       flex-grow: 1;
       text-align: right;
+      padding-right: 20px;
     }
   }
 }
