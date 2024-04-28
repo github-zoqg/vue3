@@ -5,7 +5,7 @@ import store from "@/store";
 console.log(store.state.user?.token, "store");
 
 const instance = axios.create({
-  baseURL: "http://127.0.0.1:8089",
+  baseURL: "https://192.168.1.114:8089",
   timeout: 1000,
   headers: { "content-type": "application/x-www-form-urlencoded" },
   // `transformRequest` 允许在向服务器发送前，修改请求数据
