@@ -8,7 +8,7 @@
         @change="handleCountChange(item)"
       />
       <img
-        :src="`https://source.unsplash.com/random/100*100?${item.id}`"
+        :src="`https://picsum.photos/100/100?${item.id}`"
         alt=""
         class="goods-img"
       />

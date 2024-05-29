@@ -4,7 +4,7 @@
     <el-carousel height="300px" class="w_300">
       <el-carousel-item v-for="item in 4" :key="item">
         <img
-          :src="`https://source.unsplash.com/random/944x300?${item}`"
+          :src="`https://picsum.photos/944/300?${item}`"
           alt=""
           class="cover_img"
         />
@@ -29,7 +29,7 @@
           class="pointer"
           @click="showDetail(i)"
         >
-          <img :src="`${i.imgurl}/200x200?${index}`" alt="" />
+          <img :src="`${i.imgurl}/200/200?${index}`" alt="" />
           <div class="goodsName">
             <span class="title-text">
               {{ i.goodsName }}

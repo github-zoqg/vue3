@@ -11,7 +11,7 @@
     <div class="content">
       <div class="goods-list" v-for="item in goodsList" :key="item.id">
         <img
-          :src="`https://source.unsplash.com/random/100*100?${item.id}`"
+          :src="`https://picsum.photos/100/100?${item.id}`"
           alt=""
           class="goods-img"
         />

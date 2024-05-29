@@ -3,7 +3,7 @@
   <div class="goods-detail">
     <div class="left_box">
       <img
-        :src="`${goodsDetail.imgurl}/800x600?${route.query.goodsId}`"
+        :src="`${goodsDetail.imgurl}/800/600?${route.query.goodsId}`"
         alt=""
       />
     </div>
@@ -112,7 +112,7 @@ const goodsDetail = ref({
   storeName: "盐城盐湖店",
   storeId: storeId,
   price: 123,
-  imgurl: "https://source.unsplash.com/random/800x600?id=1",
+  imgurl: "https://picsum.photos/800/600?id=1",
 });
 let provinceAdcode = ref();
 let cityAdcode = ref();
