@@ -2,10 +2,7 @@
 <template>
   <div class="goods-detail">
     <div class="left_box">
-      <img
-        :src="`${goodsDetail.imgurl}/800/600?${route.query.goodsId}`"
-        alt=""
-      />
+      <img :src="selectImg(keyword)" alt="" />
     </div>
     <div class="right_box">
       <div>
@@ -101,9 +98,9 @@ import citysJson from "@/assets/city/city.json";
 const route = useRoute();
 const eventBus = inject("events");
 const store = useStore();
-let { goodsId, storeId } = route.query;
+let { goodsId, storeId, keyword } = route.query;
 
-// console.log("route", route.query, store);
+console.log("route", route.query, store);
 
 // 这里是假数据
 const goodsDetail = ref({
@@ -227,6 +224,42 @@ const handleCardClick = () => {
 // need登录
 const Login = () => {
   eventBus.emit("needLogin");
+};
+const selectImg = (type) => {
+  if (type.includes("板凳")) {
+    return require("@/assets/store/bandeng.webp");
+  }
+  if (type.includes("床")) {
+    return require("@/assets/store/chuang.webp");
+  }
+  if (type.includes("餐桌")) {
+    return require("@/assets/store/canzhuo.webp");
+  }
+  if (type.includes("书桌")) {
+    return require("@/assets/store/shuzhuo.webp");
+  }
+  if (type.includes("茶几")) {
+    return require("@/assets/store/chaji.webp");
+  }
+  if (type.includes("电视柜")) {
+    return require("@/assets/store/dianshigui.webp");
+  }
+  if (type.includes("衣柜")) {
+    return require("@/assets/store/yigui.webp");
+  }
+  if (type.includes("鞋柜")) {
+    return require("@/assets/store/xiegui.webp");
+  }
+  if (type.includes("床头柜")) {
+    return require("@/assets/store/chuangtougui.webp");
+  }
+  if (type.includes("沙发")) {
+    return require("@/assets/store/shafa.webp");
+  }
+  if (type.includes("椅子")) {
+    return require("@/assets/store/yizi.webp");
+  }
+  return require("@/assets/store/shuzhuangtai.webp");
 };
 </script>
 

@@ -4,10 +4,11 @@
     <el-carousel height="300px" class="w_300">
       <el-carousel-item v-for="item in 4" :key="item">
         <img
-          :src="`https://picsum.photos/944/300?${item}`"
+          :src="require(`@/assets/store/${item}.jpeg`)"
           alt=""
           class="cover_img"
         />
+        <!-- {{ `@/assets/store/${item}.jpeg` }} -->
       </el-carousel-item>
     </el-carousel>
     <div class="sticky">
@@ -29,7 +30,7 @@
           class="pointer"
           @click="showDetail(i)"
         >
-          <img :src="`${i.imgurl}/200/200?${index}`" alt="" />
+          <img :src="selectImg(i.keyword)" alt="" />
           <div class="goodsName">
             <span class="title-text">
               {{ i.goodsName }}
@@ -97,8 +98,45 @@ export default {
         query: {
           goodsId: item.goodsId,
           storeId: item.storeId,
+          keyword: item.keyword,
         },
       });
+    },
+    selectImg(type) {
+      if (type.includes("板凳")) {
+        return require("@/assets/store/bandeng.webp");
+      }
+      if (type.includes("床")) {
+        return require("@/assets/store/chuang.webp");
+      }
+      if (type.includes("餐桌")) {
+        return require("@/assets/store/canzhuo.webp");
+      }
+      if (type.includes("书桌")) {
+        return require("@/assets/store/shuzhuo.webp");
+      }
+      if (type.includes("茶几")) {
+        return require("@/assets/store/chaji.webp");
+      }
+      if (type.includes("电视柜")) {
+        return require("@/assets/store/dianshigui.webp");
+      }
+      if (type.includes("衣柜")) {
+        return require("@/assets/store/yigui.webp");
+      }
+      if (type.includes("鞋柜")) {
+        return require("@/assets/store/xiegui.webp");
+      }
+      if (type.includes("床头柜")) {
+        return require("@/assets/store/chuangtougui.webp");
+      }
+      if (type.includes("沙发")) {
+        return require("@/assets/store/shafa.webp");
+      }
+      if (type.includes("椅子")) {
+        return require("@/assets/store/yizi.webp");
+      }
+      return require("@/assets/store/shuzhuangtai.webp");
     },
   },
 };

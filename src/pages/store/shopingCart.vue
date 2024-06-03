@@ -7,11 +7,7 @@
         size="large"
         @change="handleCountChange(item)"
       />
-      <img
-        :src="`https://picsum.photos/100/100?${item.id}`"
-        alt=""
-        class="goods-img"
-      />
+      <img :src="selectImg(item.goodsName)" alt="" class="goods-img" />
       <div class="goods-info">
         <h2>{{ item.goodsName }}</h2>
         <p>商品描述：{{ item.goodsName }}</p>
@@ -95,6 +91,42 @@ const getGoodsList = () => {
 onMounted(() => {
   getGoodsList();
 });
+const selectImg = (type) => {
+  if (type.includes("板凳")) {
+    return require("@/assets/store/bandeng.webp");
+  }
+  if (type.includes("床")) {
+    return require("@/assets/store/chuang.webp");
+  }
+  if (type.includes("餐桌")) {
+    return require("@/assets/store/canzhuo.webp");
+  }
+  if (type.includes("书桌")) {
+    return require("@/assets/store/shuzhuo.webp");
+  }
+  if (type.includes("茶几")) {
+    return require("@/assets/store/chaji.webp");
+  }
+  if (type.includes("电视柜")) {
+    return require("@/assets/store/dianshigui.webp");
+  }
+  if (type.includes("衣柜")) {
+    return require("@/assets/store/yigui.webp");
+  }
+  if (type.includes("鞋柜")) {
+    return require("@/assets/store/xiegui.webp");
+  }
+  if (type.includes("床头柜")) {
+    return require("@/assets/store/chuangtougui.webp");
+  }
+  if (type.includes("沙发")) {
+    return require("@/assets/store/shafa.webp");
+  }
+  if (type.includes("椅子")) {
+    return require("@/assets/store/yizi.webp");
+  }
+  return require("@/assets/store/shuzhuangtai.webp");
+};
 </script>
 
 <style lang="scss" scoped>
