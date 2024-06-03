@@ -9,13 +9,13 @@ import * as VueRouter from "vue-router";
 // 每个路由都需要映射到一个组件。
 // 我们后面再讨论嵌套路由。
 const routes = [
-  // {
-  //   path: "/",
-  //   // redirect: "/home",
-  //   name: "me",
-  //   component: () => import("../pages/me/index.vue"),
-  //   meta: { hidden: true, title: "个人简历" },
-  // },
+  {
+    path: "/",
+    // redirect: "/home",
+    name: "me",
+    component: () => import("../pages/me/index.vue"),
+    meta: { hidden: true, title: "个人简历" },
+  },
   // 登录页
   {
     path: "/login",
@@ -94,8 +94,8 @@ const routes = [
   },
   // 毕设路由
   {
-    path: "/",
-    redirect: "/index",
+    path: "/store",
+    redirect: "/store/index",
     component: () => import("@/pages/store/index.vue"),
     meta: { title: "家具商城" },
     children: [

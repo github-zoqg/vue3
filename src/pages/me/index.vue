@@ -17,7 +17,7 @@
         </div>
         <div class="header_right">
           <p class="label">教育经历</p>
-          <p class="value">包头市职工大学-计算机应用技术</p>
+          <p class="value">北京工业大学-计算机应用技术</p>
           <p class="label">目前住址</p>
           <p>北京市-朝阳区</p>
         </div>
