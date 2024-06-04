@@ -106,6 +106,9 @@ export default {
       if (type.includes("板凳")) {
         return require("@/assets/store/bandeng.webp");
       }
+      if (type.includes("床头柜")) {
+        return require("@/assets/store/chuangtougui.webp");
+      }
       if (type.includes("床")) {
         return require("@/assets/store/chuang.webp");
       }
@@ -126,9 +129,6 @@ export default {
       }
       if (type.includes("鞋柜")) {
         return require("@/assets/store/xiegui.webp");
-      }
-      if (type.includes("床头柜")) {
-        return require("@/assets/store/chuangtougui.webp");
       }
       if (type.includes("沙发")) {
         return require("@/assets/store/shafa.webp");
