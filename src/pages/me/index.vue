@@ -112,7 +112,7 @@ export default {
               ],
             },
             {
-              name: "中心维度商城（https://mall.newwedo.net/）",
+              name: "二、中心维度商城（https://mall.newwedo.net/）",
               introduce:
                 "项⽬简介：公司c端用户购物平台，提供商品展示、购物车、订单、支付等功能。",
               responsibility: [
@@ -122,7 +122,7 @@ export default {
               ],
             },
             {
-              name: "其他",
+              name: "三、其他",
               introduce: "项⽬简介：活动分享页，字体书写动画页，协议页等。",
               responsibility: [
                 "微信小程序开发及迭代",
