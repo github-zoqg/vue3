@@ -5,17 +5,9 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
-let colors = [
-  "#FF0000",
-  "#FF7F00",
-  "#FFFF00",
-  "#00FF00",
-  "#00FFFF",
-  "#0000FF",
-  "#8B00FF",
-];
+
 let randomColor = () => {
-  return colors[randomNum(colors.length)];
+  return '#' + Math.random().toString(16).slice(2,8).padEnd(6,'0');
 };
 let oldnum;
 let randomNum = (num = 10) => {
