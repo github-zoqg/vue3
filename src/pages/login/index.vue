@@ -38,12 +38,31 @@
 </template>
 
 <script setup>
-import { onMounted, reactive } from "vue";
+import { onMounted, reactive, watch } from "vue";
 import { warnMessage, successMessage } from "../../uilts/message.js";
 import interact from "../../api/user";
 import "particles.js";
 
 let formDetail = reactive({ account: "", password: "" });
+
+// 1. 监听formDetail变化,自动深度监听
+watch(formDetail, (newVal, oldVal) => {
+  console.log("watch formDetail", newVal, oldVal);
+});
+// 2. 监听formDetail变化
+watch(
+  () => formDetail,
+  (newVal, oldVal) => {
+    // 添加deep选项，监听深层数据变化 等同于1情况
+    console.log("watch formDetail getter", newVal, oldVal);
+  }
+);
+watch(
+  () => formDetail.account,
+  (newVal, oldVal) => {
+    console.log("watch formDetail account", newVal, oldVal);
+  }
+);
 
 const login = () => {
   if (!formDetail.account) {
