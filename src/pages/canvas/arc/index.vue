@@ -72,7 +72,7 @@ export default {
       }, 1000);
     },
     randomColor() {
-      return ["#987", "#876", "#765", "#654"][~~(Math.random() * 4)];
+      return "#" + Math.random().toString(16).slice(2, 8).padEnd(6, "0");
     },
     randomNum(num = 10) {
       return ~~(Math.random() * num);
