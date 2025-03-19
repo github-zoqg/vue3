@@ -11,6 +11,10 @@ import { RoomEnvironment } from "three/examples/jsm/environments/RoomEnvironment
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 // 创建GLTF加载器对象
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader.js";
+import { compressNormals } from "three/examples/jsm/utils/GeometryCompressionUtils.js";
+let animates = null;
+let flag = false;
+let startTime = null;
 export default {
   data() {
     return {
@@ -73,6 +77,11 @@ export default {
           that.mixer = new THREE.AnimationMixer(model);
           //AnimationMixer的`.clipAction()`返回一个AnimationAction对象
           //.play()控制动画播放，默认循环播放
+          console.log(
+            that.mixer.clipAction(gltf.animations[0]),
+            "gltf.animations"
+          );
+          animates = that.mixer.clipAction(gltf.animations[0]);
           that.mixer.clipAction(gltf.animations[0]).play();
           that.animate();
         },
@@ -95,6 +104,31 @@ export default {
       document
         .querySelector("#animation")
         .appendChild(this.renderer.domElement);
+      // 创建射线投射器和鼠标向量
+      const raycaster = new THREE.Raycaster();
+      const mouse = new THREE.Vector2();
+      const _that = this;
+      this.renderer.domElement.onclick = function (event) {
+        console.log(event.clientX, event.clientY);
+        // 计算鼠标在标准化设备坐标中的位置
+        mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
+        mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
+
+        // 通过鼠标位置更新射线投射器
+        raycaster.setFromCamera(mouse, _that.camera);
+        // 计算射线与场景中对象的交点
+        const intersects = raycaster.intersectObjects(_that.scene.children);
+
+        if (intersects.length > 0) {
+          console.log("点击到对象:", intersects);
+          console.log("flag:", flag);
+          console.log("animates.time:", animates.time);
+          // len % 2 == 0 && animates.stop() && (animates.time = startTime);
+          flag && (animates.paused = false) && (animates.time = startTime);
+          !flag && (animates.paused = true) && (startTime = animates.time);
+          flag = !flag;
+        }
+      };
     },
     addControls() {
       // 创建相机控件
@@ -107,6 +141,7 @@ export default {
       this.controls.enableDamping = true;
     },
     animate() {
+      // console.log("animate", animates.time);
       // 渲染视图
       this.renderer.render(this.scene, this.camera);
       //  controls.update()函数内会执行camera.lookAt(x, y, z)
