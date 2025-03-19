@@ -79,6 +79,7 @@ export default {
         "熟练使⽤canvas、d3.js、three.js、echarts、dataV进行页面数据可视化",
         "精通ajax、fetch、axios、mock.js进行网站异步交互",
         "掌握vue.js源码及其原理，熟练使⽤vue-cli及vue全家桶进行项目开发",
+        "熟练掌握uniapp跨平台框架，熟练掌握arkTS，可开发鸿蒙应用",
         "熟练使用react、react-router、redux、antd进行项目开发",
         "熟练使用webpack、loader、plugin搭建脚手架并了解工作原理",
         "熟练使用bootstrap、elemnet-ui、vant等ui框架，并进行二次开发",
