@@ -95,9 +95,10 @@ const routes = [
   // 毕设路由
   {
     path: "/store",
+    name: "store",
     redirect: "/store/index",
     component: () => import("@/pages/store/index.vue"),
-    meta: { title: "家具商城" },
+    meta: { title: "家具商城", type: "store" },
     children: [
       {
         path: "index",

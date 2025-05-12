@@ -84,6 +84,7 @@ module.exports = {
       runtimeChunk: {
         name: "runtime",
       },
+      moduleIds: "natural",
       splitChunks: {
         cacheGroups: {
           vendor: {

@@ -27,13 +27,13 @@ export default {
     },
   },
   created() {
-    // console.log(`layout created`);
-    // this.init();
+    console.log(`layout created`);
+    this.init();
   },
   methods: {
     init() {
-      // let hiddenUrl = ["#/", "#/login"];
-      // this.isShowHeader = !hiddenUrl.includes(location.hash);
+      let hiddenUrl = ["#/", "#/login"];
+      this.isShowHeader = !hiddenUrl.includes(location.hash);
     },
   },
 };
@@ -43,7 +43,6 @@ export default {
 .flexbox {
   display: flex;
   flex-grow: 1;
-  height: calc(100% - 40px);
   .content-box {
     flex-grow: 1;
     overflow-x: hidden;

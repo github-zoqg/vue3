@@ -111,6 +111,9 @@ const linkTo = (route) => {
 .nav-basebox {
   flex-shrink: 0;
   position: relative;
+  height: 100%;
+  overflow: auto;
+  scrollbar-width: none;
   .operation {
     position: absolute;
     right: 0;
