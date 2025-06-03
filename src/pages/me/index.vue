@@ -32,7 +32,7 @@
           <p class="tel">随时到岗</p>
         </div>
         <div class="body">
-          <h1>8年前端开发经验,专业技能全面</h1>
+          <h1>9年前端开发经验,专业技能全面</h1>
           <ul>
             <li v-for="(i, index) in list" :key="index">{{ i }}</li>
           </ul>
