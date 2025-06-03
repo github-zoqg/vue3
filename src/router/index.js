@@ -1,4 +1,6 @@
 import * as VueRouter from "vue-router";
+// import Home from "../pages/home/index.vue";
+import component from "element-plus/es/components/tree-select/src/tree-select-option.mjs";
 
 // 1. 定义路由组件.
 // 也可以从其他文件导入
@@ -35,6 +37,7 @@ const routes = [
     path: "/home",
     name: "home",
     component: () => import("../pages/home/index.vue"),
+    // component: Home,
     meta: {
       type: "first",
     },

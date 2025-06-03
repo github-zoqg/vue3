@@ -3,7 +3,7 @@ import App from "./App.vue";
 import router from "./router";
 import store from "./store";
 import ele from "element-plus";
-// import "element-plus/dist/index.css";
+import "element-plus/dist/index.css";
 // import "amfe-flexible";
 import "./uilts/setRootFontSize";
 import "./styles/reset-ele-default-theme.scss";
