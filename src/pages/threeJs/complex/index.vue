@@ -46,7 +46,7 @@ export default {
       renderer = new THREE.WebGLRenderer({ antialias: true });
       renderer.setPixelRatio(window.devicePixelRatio);
       //   渲染区域大小设置
-      let width = window.innerWidth - 200;
+      let width = document.querySelector(".content-box").offsetWidth;
       let height = document.querySelector(".content-box").offsetHeight;
       renderer.setSize(width, height);
       renderer.outputEncoding = THREE.sRGBEncoding;
@@ -93,8 +93,6 @@ export default {
               }
             });
           }
-          console.log(_that.scene.children[1], "intersects");
-          console.log(_that.scene.children, "_that.scene.children");
           // 设置模型位置
           model.position.set(1, 1, 0);
           // 设置模型缩放
@@ -162,11 +160,10 @@ export default {
       composer.render();
 
       renderer.domElement.onclick = function (event) {
-        console.log(event.clientX, event.clientY);
+        console.log(event.clientX, event.clientY, width, height);
         // 计算鼠标在标准化设备坐标中的位置
-        mouse.x = (event.clientX / width) * 2 - 1;
-        mouse.y = -(event.clientY / height) * 2 + 1;
-
+        mouse.x = (event.offsetX / width) * 2 - 1;
+        mouse.y = -(event.offsetY / height) * 2 + 1;
         // 通过鼠标位置更新射线投射器
         raycaster.setFromCamera(mouse, _that.camera);
         // 计算射线与场景中对象的交点
