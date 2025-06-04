@@ -1,6 +1,7 @@
 一、简介
 
 二、技术栈
+
 核心框架：Vue（精通源码）、React、Uniapp、ArkTS（鸿蒙开发）
 
 可视化：Canvas/D3.js/Three.js/ECharts（熟练落地多个商业项目）
@@ -17,7 +18,7 @@
 
   主导B端ERP系统重构，优化打包体积、优化页面加载速度40%。
 
-  实时绘制设备收集的笔记数据（Canvas+WebSocket），对书写绘制比价进行还原。
+  实时绘制设备收集的笔记数据（Canvas+WebSocket），对书写绘制进行还原。
 
   负责公司微信小程序（Uniapp）0-1开发，提升用户体验。
 
