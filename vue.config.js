@@ -1,8 +1,16 @@
 const path = require("path");
-let cdnJs = {};
+let cdnJs = {
+  cesium:
+    "https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Cesium.js",
+};
 // cdn css
-let cdnCss = {};
-let externals = {};
+let cdnCss = {
+  cesiumCss:
+    "https://cesium.com/downloads/cesiumjs/releases/1.132/Build/Cesium/Widgets/widgets.css",
+};
+let externals = {
+  cesium: "Cesium",
+};
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
@@ -33,6 +41,7 @@ if (isProduction) {
   );
 
   cdnJs = {
+    ...cdnJs,
     // 第三方依赖
     vue: "https://unpkg.com/vue@3.4.21/dist/vue.global.prod.js",
     VueRouter:
@@ -45,9 +54,11 @@ if (isProduction) {
     // dayjs: "//s2.e.vhall.com/common-static/middle/dayjs/1.10.8/dayjs.min.js",
   };
   cdnCss = {
+    ...cdnCss,
     ElementUi: "https://unpkg.com/element-plus@2.3.3/dist/index.css",
   };
   externals = {
+    ...externals,
     vue: "Vue",
     "vue-router": "VueRouter",
     "vue-i18n": "VueI18n",

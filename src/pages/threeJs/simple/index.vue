@@ -18,6 +18,7 @@ export default {
   data() {
     return {
       scene: null,
+      gui: null,
     };
   },
   mounted() {
@@ -160,6 +161,7 @@ export default {
     initGUI() {
       // 实例化一个gui对象
       const gui = new GUI();
+      this.gui = gui;
       //改变交互界面style属性
       gui.domElement.style.right = "0px";
       gui.domElement.style.width = "300px";
@@ -197,6 +199,16 @@ export default {
       document.querySelector(".hello").appendChild(stats.domElement);
     },
   },
+  unmounted() {
+    // 销毁控制器和gui
+    // console.log(this.controls, "this.controls");
+    // this.controls.dispose();
+    // console.log(this.gui, "this.gui");
+    this.gui.domElement.parentNode.removeChild(this.gui.domElement);
+  },
+  // beforeUnmount() {
+  //   console.log("beforeUnmount");
+  // },
 };
 </script>
 

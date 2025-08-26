@@ -101,6 +101,15 @@ const routes = [
       type: "threejs",
     },
   },
+
+  {
+    path: "/threejs/cesium",
+    name: "cesium",
+    component: () => import("../pages/threeJs/cesium"),
+    meta: {
+      type: "threejs",
+    },
+  },
   // 毕设路由
   {
     path: "/store",

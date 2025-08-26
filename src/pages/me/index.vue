@@ -108,8 +108,9 @@ export default {
               responsibility: [
                 "季度正常迭代页面开发及后续的优化迭代及技术⽂档编写",
                 "采⽤vue、vuex、vue-router全家桶进⾏项⽬搭建及开发,axios.js进⾏前后端数据交互",
-                "实时绘制设备收集的笔记数据（Canvas+WebSocket），对书写绘制比价进行还原。",
-                "使用echart对数据进行可视化渲染",
+                "实时绘制设备收集的笔记数据（Canvas+mqtt），对书写绘制比价进行还原。",
+                "使用echart+WebSocket对数据进行实时可视化渲染",
+                "对项目进行重构，优化打包体积，构建速度，提升首屏加载速度",
               ],
             },
             {
@@ -120,13 +121,14 @@ export default {
                 "季度正常迭代页面开发及后续的优化迭代及技术⽂档编写",
                 "基于 CSS3 媒体查询 + REM/VW 布局方案，构建多端响应式样式系统，实现 H5/小程序/PC 三端样式复用率 85%+。",
                 "商城支付系统（微信支付+支付宝）开发，实现公司C端支付体系并产生实际收益",
+                "优化图片上传功能,使用canvas对图片进行预览+裁剪",
               ],
             },
             {
               name: "三、其他",
               introduce: "项⽬简介：活动分享页，字体书写动画页，协议页等。",
               responsibility: [
-                "微信小程序开发（0-1）及迭代",
+                "uniapp微信小程序开发（0-1）及迭代",
                 "微信公众号相关开发及迭代",
                 "正常迭代公司相关项⽬配套页面开发",
               ],
@@ -155,9 +157,9 @@ export default {
                 "项⽬简介：B端用户直播配置管理平台,选择直播类型互动工具等直播相关配置。",
               responsibility: [
                 "季度正常迭代页面开发及后续的优化迭代及技术文档编写;",
-                "浏览器兼容性问题处理",
                 "采用vue、vuex、vue-router全家桶进行项目搭建及开发,echarts、dataV进行数据图表渲染",
                 "使用WebSocket进行状态实时更新及聊天通信",
+                "大文件上传开发,使用webWorker多线程+sparkMD5计算文件切片hash值,优化上传速度",
                 "参与重构，采用微前端架构（wujie），将公司不同项目集成至同一平台",
               ],
             },
@@ -167,11 +169,11 @@ export default {
               introduce:
                 "项⽬简介：直播间开发、B端主持人、C端观众（pc、h5）https://live.vhall.com/v3/lives/watch/:id两个项目。",
               responsibility: [
-                "季度正常迭代页面开发及后续的优化迭代及技术文档编写",
                 "项目重构，将项目页面功能解耦并全部组件化，减少重复组件开发",
                 "采用vue、vuex、vue-router全家桶进行项目搭建及开发,axios.js进行前后端数据交互",
-                "使用WebSocket进行状态实时通信",
-                "使用echart对数据进行可视化渲染",
+                "使用WebSocket进行状态实时通信，使用echart对数据进行可视化渲染",
+                "使用i18n国际化方案，实现多语言切换",
+                "使用vue-virtual-scroll-list虚拟列表渲染海量数据,提升列表渲染效率",
               ],
             },
           ],
@@ -199,7 +201,7 @@ export default {
                 "项目简介：公司全业务集成，及相关业务跳转链接；云信、云秒贴、云租等。",
               responsibility: [
                 "主要负责云租，票交所等相关业务页面开发；负责页面的编写和页面上特效的制作及前后端数据交互；兼容性问题的解决",
-                "使用vue-cli3进行模块化开发；使用 axios.js进行前后端数据交互",
+                "使用vue-cli3进行模块化开发，使用 axios.js进行前后端数据交互",
                 "使用vue、echart、vue-router、vuex、elemnet-ui、less对项目进行开发",
                 "使用echart对数据进行可视化渲染",
               ],
@@ -211,9 +213,9 @@ export default {
               responsibility: [
                 "独自负责项目所有迭代及项目优化",
                 "为新增迭代页面及首页的更改，后期需求优化及项目优化；兼容性问题的解决",
-                "使用vue、echart、vue-router、vuex、elemnet-ui、less对项目进行开发",
-                "使用axios.js进行前后端数据交互",
-                "使用echart对数据进行可视化渲染,amap高德api进行地图相关需求开发",
+                "使用vue、echart、vue-router、vuex、elemnet-ui、less对项目进行开发，使用axios.js进行前后端数据交互",
+                "使用webSocket+echart对数据进行实时可视化渲染",
+                "使用amap-js-api完成地图可视化，开发电子围栏、设备信息管理等功能",
               ],
             },
             {
