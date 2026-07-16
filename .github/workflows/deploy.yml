@@ -17,7 +17,7 @@ jobs:
       - name: Setup Node.js environment
         uses: actions/setup-node@v2 # 设置Node.js环境
         with:
-          node-version: "22" # 使用Node.js版本14
+          node-version: "24" # 使用Node.js版本14
 
       - name: Install dependencies and build project
         run: |
