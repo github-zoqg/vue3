@@ -10,12 +10,12 @@ jobs:
     runs-on: ubuntu-latest # 使用Ubuntu操作系统运行
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2 # 检出代码
+        uses: actions/checkout@v4 # 检出代码
         with:
           persist-credentials: false # 防止权限问题
 
       - name: Setup Node.js environment
-        uses: actions/setup-node@v2 # 设置Node.js环境
+        uses: actions/setup-node@v4 # 设置Node.js环境
         with:
           node-version: "24" # 使用Node.js版本14
 
