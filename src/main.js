@@ -6,7 +6,7 @@ import ele from "element-plus";
 import "element-plus/dist/index.css";
 // import "amfe-flexible";
 import "./uilts/setRootFontSize";
-import "./styles/reset-ele-default-theme.scss";
+// import "./styles/reset-ele-default-theme.scss";
 import "./styles/index.css";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
 // 注册全局events
