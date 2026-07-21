@@ -8,6 +8,8 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest # 使用Ubuntu操作系统运行
+    permissions:
+      contents: write # 添加写入权限
     steps:
       - name: Checkout code
         uses: actions/checkout@v4 # 检出代码
@@ -29,3 +31,5 @@ jobs:
         with:
           branch: gh-pages # 部署到gh-pages分支
           folder: dist # 指定dist目录作为部署内容，根据你的构建输出目录调整
+          create_branch: true # 如果分支不存在则自动创建
+          token: ${{ secrets.GITHUB_TOKEN }} # 显式指定token
