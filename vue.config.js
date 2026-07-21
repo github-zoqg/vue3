@@ -12,8 +12,8 @@ let externals = {
   cesium: "Cesium",
 };
 const CompressionWebpackPlugin = require("compression-webpack-plugin");
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const isProduction = process.env.NODE_ENV === "production";
 const proPlugins = [];
@@ -37,7 +37,7 @@ if (isProduction) {
       test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"),
       threshold: 10240,
       minRatio: 0.8,
-    })
+    }),
   );
 
   cdnJs = {
@@ -74,6 +74,7 @@ if (isProduction) {
 }
 
 module.exports = {
+  lintOnSave: false,
   pluginOptions: {
     "style-resources-loader": {
       preProcessor: "less",
@@ -93,6 +94,12 @@ module.exports = {
     });
   },
   configureWebpack: {
+    resolve: {
+      extensions: [".js", ".jsx", ".ts", ".tsx", ".json"],
+      alias: {
+        "@": path.resolve(__dirname, "src"),
+      },
+    },
     devtool: "source-map",
     // 防止将某些 import 的包(package)打包到 bundle 中
     externals: externals,
@@ -146,7 +153,7 @@ module.exports = {
       // 给 sass-loader 传递选项
       scss: {
         // sass-loader版本V8以上
-        // prependData: '@import "~@/assets/common.scss";',
+        // prependData: '@import "@/styles/reset-ele-default-theme.scss";',
         // sass-loader版本V8以下
         // additionalData: '@import "~@/assets/common.scss";'
       },
