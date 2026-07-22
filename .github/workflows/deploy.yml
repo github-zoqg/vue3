@@ -32,4 +32,4 @@ jobs:
           branch: gh-pages # 部署到gh-pages分支
           folder: dist # 指定dist目录作为部署内容，根据你的构建输出目录调整
           create_branch: true # 如果分支不存在则自动创建
-          token: ${{ secrets.GITHUB_TOKEN }} # 显式指定token
+          token: ${{ secrets.CI }} # 显式指定token
