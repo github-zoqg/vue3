@@ -28,10 +28,10 @@ if (isProduction) {
     "html",
   ];
   proPlugins.push(
-    new BundleAnalyzerPlugin({
-      analyzerMode: "server", // 不启动展示打包报告的http服务器
-      generateStatsFile: false, // 是否生成stats.json文件
-    }),
+    // new BundleAnalyzerPlugin({
+    //   analyzerMode: "server", // 不启动展示打包报告的http服务器
+    //   generateStatsFile: false, // 是否生成stats.json文件
+    // }),
     new CompressionWebpackPlugin({
       algorithm: "gzip",
       test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"),
