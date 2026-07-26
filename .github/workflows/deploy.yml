@@ -27,7 +27,7 @@ jobs:
           npm run build  # 构建项目，这里假设你的构建命令是`npm run build`，根据实际情况修改
 
       - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4 # 使用GitHub Pages部署动作
+        uses: JamesIves/github-pages-deploy-action@v4 # 使用GitHub Pages部署动作
         with:
           branch: gh-pages # 部署到gh-pages分支
           folder: dist # 指定dist目录作为部署内容，根据你的构建输出目录调整
