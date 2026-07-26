@@ -75,6 +75,7 @@ if (isProduction) {
 
 module.exports = {
   lintOnSave: false,
+  base: "./",
   pluginOptions: {
     "style-resources-loader": {
       preProcessor: "less",
