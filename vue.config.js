@@ -16,6 +16,7 @@ const BundleAnalyzerPlugin =
   require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const isProduction = process.env.NODE_ENV === "production";
+console.log(isProduction, process.argv, "isProduction");
 const proPlugins = [];
 if (isProduction) {
   const productionGzipExtensions = [
@@ -28,10 +29,6 @@ if (isProduction) {
     "html",
   ];
   proPlugins.push(
-    // new BundleAnalyzerPlugin({
-    //   analyzerMode: "server", // 不启动展示打包报告的http服务器
-    //   generateStatsFile: false, // 是否生成stats.json文件
-    // }),
     new CompressionWebpackPlugin({
       algorithm: "gzip",
       test: new RegExp("\\.(" + productionGzipExtensions.join("|") + ")$"),
@@ -39,6 +36,14 @@ if (isProduction) {
       minRatio: 0.8,
     }),
   );
+  if (process.argv.includes("--analyze")) {
+    proPlugins.push(
+      new BundleAnalyzerPlugin({
+        analyzerMode: "server", // 不启动展示打包报告的http服务器
+        generateStatsFile: false, // 是否生成stats.json文件
+      }),
+    );
+  }
 
   cdnJs = {
     ...cdnJs,
